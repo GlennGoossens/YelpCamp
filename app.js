@@ -50,6 +50,6 @@ app.use("/", indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
 
-app.listen(3000, function (req, res) {
+app.listen(process.env.PORT, function (req, res) {
   console.log("server is started and running on port 3000");
 });
