@@ -15,7 +15,9 @@ var campgroundRoutes = require("./routes/campgrounds");
 var commentRoutes = require("./routes/comments");
 var indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/yelp_camp", {
+var databaseURL = process.env.DATABASEURL || 'mongodb://localhost/yelp_camp';
+
+mongoose.connect(databaseURL, {
   useMongoClient: true
 });
 app.use(bodyParser.urlencoded({
@@ -50,6 +52,6 @@ app.use("/", indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
 
-app.listen(process.env.PORT, function (req, res) {
+app.listen(process.env.PORT,process.env.IP, function (req, res) {
   console.log("server is started and running on port 3000");
 });
